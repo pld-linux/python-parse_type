@@ -8,7 +8,7 @@ Summary:	Simplify building parse types based on the parse module
 Summary(pl.UTF-8):	Uproszczenie tworzenia typów do analizy w oparciu o moduł parse
 Name:		python-parse_type
 Version:	0.5.2
-Release:	3
+Release:	4
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/parse-type/
