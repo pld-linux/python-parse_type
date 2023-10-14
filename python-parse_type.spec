@@ -7,35 +7,35 @@
 Summary:	Simplify building parse types based on the parse module
 Summary(pl.UTF-8):	Uproszczenie tworzenia typów do analizy w oparciu o moduł parse
 Name:		python-parse_type
-Version:	0.5.2
-Release:	5
+Version:	0.6.2
+Release:	1
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/parse-type/
 Source0:	https://files.pythonhosted.org/packages/source/p/parse-type/parse_type-%{version}.tar.gz
-# Source0-md5:	b954062f14ab723a91fe1e2be15e859d
+# Source0-md5:	f5c79d0643db5a3936ac22f92d7ee21d
 URL:		https://pypi.org/project/parse-type/
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools
 %if %{with tests}
 BuildRequires:	python-enum34
-BuildRequires:	python-parse >= 1.8.4
+BuildRequires:	python-parse >= 1.13.1
 BuildRequires:	python-pytest >= 3.2
-BuildRequires:	python-six >= 1.11
+BuildRequires:	python-pytest-html >= 1.19.0
+BuildRequires:	python-pytest-metadata
+BuildRequires:	python-six >= 1.15
 %endif
 %endif
 %if %{with python3}
-BuildRequires:	python3-2to3 >= 1:3.2
 BuildRequires:	python3-modules >= 1:3.2
 BuildRequires:	python3-setuptools
 %if %{with tests}
-BuildRequires:	python3-parse >= 1.8.4
-BuildRequires:	python3-pytest >= 3.2
-BuildRequires:	python3-six >= 1.11
-%if "%{py3_ver}" < "3.4"
-BuildRequires:	python3-enum34
-%endif
+BuildRequires:	python3-parse >= 1.18.0
+BuildRequires:	python3-pytest >= 5.0
+BuildRequires:	python3-pytest-html >= 1.19.0
+BuildRequires:	python3-pytest-metadata
+BuildRequires:	python3-six >= 1.15
 %endif
 %endif
 BuildRequires:	rpm-pythonprov
@@ -54,7 +54,7 @@ parse_type rozszerza moduł parse (odwrotność "string.format()").
 Summary:	Simplify building parse types based on the parse module
 Summary(pl.UTF-8):	Uproszczenie tworzenia typów do analizy w oparciu o moduł parse
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.2
+Requires:	python3-modules >= 1:3.4
 
 %description -n python3-parse_type
 parse_type rozszerza moduł parse (odwrotność "string.format()").
@@ -71,6 +71,7 @@ parse_type rozszerza moduł parse (odwrotność "string.format()").
 
 %if %{with tests}
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTEST_PLUGINS=pytest_html.plugin,pytest_metadata.plugin \
 %{__python} -m pytest tests
 %endif
 %endif
@@ -80,6 +81,7 @@ PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 
 %if %{with tests}
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTEST_PLUGINS=pytest_html.plugin,pytest_metadata.plugin \
 %{__python3} -m pytest tests
 %endif
 %endif
